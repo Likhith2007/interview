@@ -1,0 +1,46 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Install dependencies",
+      "type": "shell",
+      "command": "pip",
+      "args": ["install", "-r", "requirements.txt"],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Run Agent (development)",
+      "type": "shell",
+      "command": "python",
+      "args": ["src/app.py"],
+      "problemMatcher": [],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "isBackground": true
+    },
+    {
+      "label": "Run Agent (uvicorn)",
+      "type": "shell",
+      "command": "uvicorn",
+      "args": ["src.app:asgi_app", "--host", "0.0.0.0", "--port", "8088", "--reload"],
+      "problemMatcher": [],
+      "isBackground": true
+    },
+    {
+      "label": "Test Fraud Analyzer",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "pytest", "tests/", "-v"],
+      "problemMatcher": [],
+      "group": {
+        "kind": "test"
+      }
+    }
+  ]
+}

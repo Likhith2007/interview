@@ -1,0 +1,111 @@
+<Window x:Class="OverlayDetector.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Email Settings" Height="480" Width="500"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#F5F5F5">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#2C3E50" Padding="20">
+            <StackPanel>
+                <TextBlock Text="⚙️  Email Notification Settings"
+                           FontSize="18" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Configure Gmail SMTP to send fraud alert emails"
+                           FontSize="11" Foreground="#BDC3C7" Margin="0,4,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Form -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="24,20,24,10">
+
+                <!-- Enable toggle -->
+                <Border Background="White" CornerRadius="6" Padding="16" Margin="0,0,0,14"
+                        BorderBrush="#DADADA" BorderThickness="1">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <CheckBox x:Name="EnableEmailCheckBox"
+                                  Content="Enable email notifications when fraud is detected"
+                                  FontSize="13" Foreground="#2C3E50"
+                                  VerticalContentAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Sender Email -->
+                <TextBlock Text="Your Gmail Address (Sender)" FontSize="12" FontWeight="SemiBold"
+                           Foreground="#34495E" Margin="0,0,0,5"/>
+                <TextBox x:Name="SenderEmailBox"
+                         FontSize="13" Padding="10,8" Margin="0,0,0,14"
+                         BorderBrush="#BDC3C7" BorderThickness="1"
+                         Background="White"
+                         Tag="you@gmail.com"/>
+
+                <!-- App Password -->
+                <TextBlock Text="Gmail App Password" FontSize="12" FontWeight="SemiBold"
+                           Foreground="#34495E" Margin="0,0,0,5"/>
+                <PasswordBox x:Name="AppPasswordBox"
+                             FontSize="13" Padding="10,8" Margin="0,0,0,4"
+                             BorderBrush="#BDC3C7" BorderThickness="1"
+                             Background="White"/>
+                <TextBlock FontSize="11" Foreground="#7F8C8D" Margin="0,0,0,14"
+                           TextWrapping="Wrap">
+                    <Run Text="⚠  Use a "/>
+                    <Hyperlink NavigateUri="https://myaccount.google.com/apppasswords"
+                               RequestNavigate="Hyperlink_RequestNavigate">
+                        Gmail App Password
+                    </Hyperlink>
+                    <Run Text=", not your regular password. Enable 2-Step Verification first."/>
+                </TextBlock>
+
+                <!-- Interviewer Email -->
+                <TextBlock Text="Interviewer Email (Recipient)" FontSize="12" FontWeight="SemiBold"
+                           Foreground="#34495E" Margin="0,0,0,5"/>
+                <TextBox x:Name="InterviewerEmailBox"
+                         FontSize="13" Padding="10,8" Margin="0,0,0,20"
+                         BorderBrush="#BDC3C7" BorderThickness="1"
+                         Background="White"
+                         Tag="interviewer@company.com"/>
+
+                <!-- Test Email Button -->
+                <Button x:Name="TestEmailButton"
+                        Click="TestEmail_Click"
+                        Content="📧  Send Test Email"
+                        Background="#3498DB" Foreground="White"
+                        FontSize="13" FontWeight="Bold"
+                        Padding="14,9" HorizontalAlignment="Left"
+                        Cursor="Hand" BorderThickness="0"/>
+
+                <!-- Status label -->
+                <TextBlock x:Name="StatusLabel"
+                           FontSize="12" Margin="0,10,0,0"
+                           TextWrapping="Wrap"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Footer Buttons -->
+        <Border Grid.Row="2" Background="#ECF0F1" Padding="20,14">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Cancel"
+                        Click="Cancel_Click"
+                        Background="#95A5A6" Foreground="White"
+                        FontSize="13" FontWeight="Bold"
+                        Padding="20,9" MinWidth="90"
+                        Cursor="Hand" BorderThickness="0"
+                        Margin="0,0,10,0"/>
+                <Button Content="Save Settings"
+                        Click="Save_Click"
+                        Background="#27AE60" Foreground="White"
+                        FontSize="13" FontWeight="Bold"
+                        Padding="20,9" MinWidth="120"
+                        Cursor="Hand" BorderThickness="0"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

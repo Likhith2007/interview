@@ -1,0 +1,60 @@
+<Window x:Class="OverlayDetector.WarningWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="⚠️ Overlay Warning" 
+        Height="250" 
+        Width="400"
+        Background="#FFF3CD"
+        WindowStyle="ToolWindow"
+        ResizeMode="NoResize"
+        Topmost="True"
+        WindowStartupLocation="CenterOwner">
+    <Grid Background="#FFF3CD">
+        <Border Padding="20">
+            <StackPanel VerticalAlignment="Stretch">
+                <!-- Warning Icon and Title -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                    <TextBlock Text="⚠️" FontSize="36" VerticalAlignment="Top"/>
+                    <TextBlock Text="Overlay Detected" 
+                               FontSize="20" 
+                               FontWeight="Bold" 
+                               Foreground="#856404"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Message -->
+                <TextBlock x:Name="MessageText" 
+                           Text="" 
+                           FontSize="12" 
+                           Foreground="#333333"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,15"
+                           LineHeight="18"/>
+
+                <!-- Instruction -->
+                <Border Background="#FFE9C6" Padding="10" CornerRadius="4" Margin="0,0,0,15">
+                    <TextBlock Text="Please close this unauthorized window before continuing." 
+                               FontSize="11" 
+                               Foreground="#856404"
+                               FontStyle="Italic"
+                               TextWrapping="Wrap"/>
+                </Border>
+
+                <!-- Buttons -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="CloseButton"
+                            Click="Close_Click"
+                            Background="#856404" 
+                            Foreground="White" 
+                            Padding="15,8" 
+                            FontSize="12"
+                            MinWidth="100"
+                            Cursor="Hand">
+                        Close
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,32 @@
+name: interview-fraud-detector
+description: Analyze overlay detection data and identify suspicious applications that indicate interview fraud
+version: 1.0.0
+language: python
+runtime: python-3.11
+
+protocols:
+  - responses
+
+entrypoint:
+  module: src.app
+  callable: app
+
+dependencies:
+  - requirements.txt
+
+environment:
+  - .env
+
+config:
+  model_deployment_name: gpt-4o-mini
+  model_api_version: 2024-08-01-preview
+
+instructions: |
+  You are an expert interview fraud detection agent. Your job is to analyze process names and window titles detected during technical interviews to determine if they are suspicious.
+  You use pattern matching as a first pass, and LLM reasoning to evaluate context and severity.
+  You provide actionable recommendations and format the output as structured JSON.
+
+tools:
+  - name: analyze_overlay_risk
+    description: Analyzes an overlay detection event and returns a risk score and recommendation.
+
